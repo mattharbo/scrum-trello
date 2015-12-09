@@ -1,0 +1,28 @@
+body {
+    font-family: "Arial", Arial, Sans-serif;
+    font-size: 11px;
+}
+
+a:link {
+	color: blue;
+    text-decoration :none;
+}
+
+/* visited link */
+a:visited {
+	color: blue;
+    text-decoration :none;
+}
+
+/* mouse over link */
+a:hover {
+	color: blue;
+    text-decoration :none;
+    background-color: #FFFF99;
+}
+
+/* selected link */
+a:active {
+	color: blue;
+    text-decoration :none;
+}

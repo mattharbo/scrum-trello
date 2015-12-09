@@ -1,0 +1,89 @@
+[
+	{
+		"id":"5624c1960f77228480aa4049",
+		"name":"To do back",
+		"cards":[
+			{"id":"5630f047b4392f610804d161","name":"(40) #6172 - Ticket #1"}
+		]
+	},
+	{
+		"id":"5624c1a4bdf3a7868bc704f5",
+		"name":"To do front",
+		"cards":[
+			{"id":"5649f18feb0720450cc89f45","name":"(28) #6332 - Ticket #2"}
+		]
+	},
+	{
+		"id":"561244c5945acda7e5626f90",
+		"name":"In Progress",
+		"cards":[
+			{"id":"5649c3e6eb0720450cc78962","name":"(5) #6391 - Ticket #3"}
+		]
+	},
+	{
+		"id":"561244d2b74a46b20115ea3c",
+		"name":"To Review",
+		"cards":[
+			{"id":"56322ad1e2a28aa58414fe4d","name":"(5) #6189 - Ticket #4"}
+		]
+	},
+	{
+		"id":"561244d5d3830880a92e8c1e",
+		"name":"To Test",
+		"cards":[
+			{"id":"5628e756864c2c1f695bf958","name":"(12) 6063 - Ticket #5"}
+		]
+	},
+	{
+		"id":"561b9681095780ac16807534",
+		"name":"Done",
+		"cards":[
+			{"id":"563c8815bcbf89bf8d8a23bb","name":"(10) #6291 - Ticket #6"}
+		]
+	},
+	{
+		"id":"5620b5e76cffde2d8e7412a4",
+		"name":"Sprint infos",
+		"cards":[
+			{"id":"5620b61ba86be51a31ee13a5","name":"Trello Card & Githut Ticket Workflow"},
+			{"id":"564de85bc28efc8d075ed244","name":"Trellit repo: https://github.com/CoorpAcademy/trellit/issues"}
+		]
+	}
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+
+//get Dev API key URL
+https://trello.com/app-key
+
+//Dev API key
+65c83fd020db39e2027c509a67587125
+
+//get trello token URL
+https://trello.com/1/connect?key=65c83fd020db39e2027c509a67587125&name=MyApp&response_type=token
+
+//Token (expered never)
+d8cfaa1f1f58a0e0b7d34befc2952cc26352a3e97c948bd9f80243377f98654e
+
+//Current sprint board ID
+561228dc16f33267799133c3
+
+
