@@ -1,10 +1,7 @@
-https://api.trello.com/1/boards/5631f6921f2294f89215a18d/actions?filter=updateCard,moveCardToBoard,createCard&key=65c83fd020db39e2027c509a67587125&token=d8cfaa1f1f58a0e0b7d34befc2952cc26352a3e97c948bd9f80243377f98654e
+For all event returned by the API call
 
-
-For all event returned
-
-1. check "type"
-2. For 
+1. Check the "type" of event
+2. For
 	updateCard
 		get type
 		get date
