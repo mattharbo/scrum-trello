@@ -209,4 +209,20 @@ function calcomplexity($maxtotcomp, $numberofdays, $dayfocused, $holifayspassed)
 	return $compgivenday;
 }
 
+function file_existance($folderandfilepath){
+
+	if (!file_exists("./".$folderandfilepath."/".$folderandfilepath.".json")){
+		echo "<br><br><br><br><br>".$folderandfilepath." file is missing into folder.";
+	}
+	
+}
+
+
+
+
+
+
+
+
+
 ?>

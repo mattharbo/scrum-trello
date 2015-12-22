@@ -58,7 +58,23 @@ if (!file_exists($filename)) {
 				if (date('w', strtotime($foldername)) != 0) {
 					$workingdaycounter=$workingdaycounter+1;
 				}
+				else{
+					//Monday check when Sunday json file has not been created
+					file_existance($foldername);
+					?><form method='POST' action='./filecreation.php'>
+						<input type='hidden' name='variable' value=<?echo$foldername;?>>
+						<input type='submit' value='Repair'>
+					</form><?
+				}
+			}else{
+				//Monday check when Saturday json file has not been created
+				file_existance($foldername);
+				?><form method='POST' action='./filecreation.php'>
+					<input type='hidden' name='variable' value=<?echo$foldername;?>>
+					<input type='submit' value='Repair'>
+				</form><?
 			}
+
 			// Sun => 0
 			// Mon => 1
 			// Tue => 2
@@ -271,7 +287,7 @@ if (!file_exists($filename)) {
 			</script>
 			<!-- TO BE REMOVED WHEN CSS DONE -->
 			<br><br><br><br><br>
-			<center>Total sprint complexity : <h2><?echo $livetotsprintcomp;?></h2></center>
+			<center>Total sprint complexity : <h2><?echo $livetotsprintcomp;?></h2><? echo $difftotpointboard;?> point(s) added during sprint</center>
 			<!-- ## -->
 			<center><div id="chartdiv" style="width: 85%; height: 400px; background-color: #FFFFFF;" ></div></center>
 
