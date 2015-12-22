@@ -139,8 +139,8 @@ if (!file_exists($filename)) {
 		}
 	}
 
-	print_r($graphdata);
-	echo "<br>";
+	//print_r($graphdata);
+	//echo "<br>";
 
 	//---- UPDATE ARRAY DATA IN CASE OF VELOCITY UPDATE ----
 	//Parse the entire data array
@@ -153,11 +153,6 @@ if (!file_exists($filename)) {
 			$difftotpointdone = ($graphdata['realpointdone'][$parse]-$graphdata['realpointdone'][$parse+1]);
 			// >> X = A - B
 			$unrealizedaddedpoint = $difftotpointboard - $difftotpointdone;
-
-			echo $difftotpointboard."<br>";
-			echo $difftotpointdone."<br>";
-			echo $unrealizedaddedpoint."<br>";
-
 			// >> pointrem + X for all previous days (X-1 to 1)
 			for ($z=$parse+1; $z <= $index ; $z++) { 
 				$graphdata['totpointrem'][$z] = $graphdata['totpointrem'][$z]+$unrealizedaddedpoint;
