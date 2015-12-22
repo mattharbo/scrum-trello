@@ -160,21 +160,21 @@ if (!file_exists($filename)) {
 
 	//---- UPDATE ARRAY DATA IN CASE OF VELOCITY UPDATE ----
 	//Parse the entire data array
-	for ($parse = $index; $parse > 0 ; $parse--) { 
-		//if (totpointboard day X minus totpointboard day X-1) > 0 AND NOT FOR the 1st day of the sprint
-		if (($graphdata['totpointboard'][$parse]-$graphdata['totpointboard'][$parse+1]) > 0 AND $parse != $index) {
-			// >> A = totpointboard day X minus totpointboard day X-1
-			$difftotpointboard = ($graphdata['totpointboard'][$parse]-$graphdata['totpointboard'][$parse+1]);
-			// >> B = pointdone day X minus pointdone day X-1
-			$difftotpointdone = ($graphdata['realpointdone'][$parse]-$graphdata['realpointdone'][$parse+1]);
-			// >> X = A - B
-			$unrealizedaddedpoint = $difftotpointboard - $difftotpointdone;
-			// >> pointrem + X for all previous days (X-1 to 1)
-			for ($z=$parse+1; $z <= $index ; $z++) { 
-				$graphdata['totpointrem'][$z] = $graphdata['totpointrem'][$z]+$unrealizedaddedpoint;
-			}
-		}
-	}
+	// for ($parse = $index; $parse > 0 ; $parse--) { 
+	// 	//if (totpointboard day X minus totpointboard day X-1) > 0 AND NOT FOR the 1st day of the sprint
+	// 	if (($graphdata['totpointboard'][$parse]-$graphdata['totpointboard'][$parse+1]) > 0 AND $parse != $index) {
+	// 		// >> A = totpointboard day X minus totpointboard day X-1
+	// 		$difftotpointboard = ($graphdata['totpointboard'][$parse]-$graphdata['totpointboard'][$parse+1]);
+	// 		// >> B = pointdone day X minus pointdone day X-1
+	// 		$difftotpointdone = ($graphdata['realpointdone'][$parse]-$graphdata['realpointdone'][$parse+1]);
+	// 		// >> X = A - B
+	// 		$unrealizedaddedpoint = $difftotpointboard - $difftotpointdone;
+	// 		// >> pointrem + X for all previous days (X-1 to 1)
+	// 		for ($z=$parse+1; $z <= $index ; $z++) { 
+	// 			$graphdata['totpointrem'][$z] = $graphdata['totpointrem'][$z]+$unrealizedaddedpoint;
+	// 		}
+	// 	}
+	// }
 
 	$livetotsprintcomp=max($graphdata['totpointboard']);
 	$holidays = $index-$workingdaycounter;
