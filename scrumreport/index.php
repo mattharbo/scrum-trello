@@ -11,7 +11,7 @@ echo topbar("..");
 		<script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/light.js"></script>
 <?php
 
-// $allboardcards = "https://api.trello.com/1/boards/561228dc16f33267799133c3/cards?fields=name,idList&key=65c83fd020db39e2027c509a67587125&token=d8cfaa1f1f58a0e0b7d34befc2952cc26352a3e97c948bd9f80243377f98654e";
+//$allboardcards = "https://api.trello.com/1/boards/561228dc16f33267799133c3/cards?fields=name,idList&key=65c83fd020db39e2027c509a67587125&token=d8cfaa1f1f58a0e0b7d34befc2952cc26352a3e97c948bd9f80243377f98654e";
 $boardlistsandcards = "https://api.trello.com/1/boards/561228dc16f33267799133c3/lists?cards=open&card_fields=name&fields=name&key=65c83fd020db39e2027c509a67587125&token=d8cfaa1f1f58a0e0b7d34befc2952cc26352a3e97c948bd9f80243377f98654e";
 
 $newfoldername = date(Y.'\-'.m.'\-'.d);
@@ -39,7 +39,7 @@ if (!file_exists($filename)) {
 	file_put_contents("./".$newfoldername."/".$newfoldername.'.json', fetchdataonapi($boardlistsandcards)); 
 	//WHEN ALL DATA HAVE BEEN CATCHED FROM TRELLO DO THE FOLLOWING
 
-	$graphdata = array('date' => array(), 'totpointrem' => array(), 'totpointboard' =>array(), 'pointdone' =>array());
+	$graphdata = array('date' => array(), 'totpointrem' => array(), 'totpointboard' =>array(), 'pointdone' =>array(), 'realpointdone' => array());
 
 	$directory = './';
 	$filesindir = scandir($directory, 1);
@@ -78,17 +78,14 @@ if (!file_exists($filename)) {
 				$dailyjsoncontent = file_get_contents($dailyjson);
 				//Decode JSON response
 				$obj = json_decode($dailyjsoncontent);
-				//Read each list details
-				$boardcomplexity = 0;
-				$complexity4scrum = 0;
 				
-
+				$boardcomplexity = 0; //variable of total points in board
+				$complexity4scrum = 0; //variable of total points remaining in board
+				
+				//Read each list details
 				foreach ($obj as $lists) {
 
 					if ($lists->name == "To do back" OR $lists->name == "To do front" OR $lists->name == "In Progress" OR $lists->name == "To Review") {
-						
-						// echo $lists->name." : ";
-
 				 		//Read each card details from the list been watched
 				 		$listcomplexity = 0;
 				 		
@@ -97,34 +94,32 @@ if (!file_exists($filename)) {
 				 		}
 
 				 		$complexity4scrum = $complexity4scrum + $listcomplexity;
-				 	
 			 			$boardcomplexity = $boardcomplexity + $listcomplexity;
-			 			// echo $listcomplexity."<br>";
 					}
 
 					else{
-
-						// echo $lists->name." : ";
-
 				 		//Read each card details from the list been watched
 				 		$donecomplexity=0;
 				 		$listcomplexity = 0;
+				 		$complexitydone = 0;//variable of total points done in board
 				 		
 				 		foreach ($lists->cards as $cardsoflist) {
 				 			$listcomplexity = $listcomplexity + fetchcomplexity($cardsoflist->name);
 				 		}
 				 	
 			 			$boardcomplexity = $boardcomplexity + $listcomplexity;
-			 			// echo $listcomplexity."<br>";
+			 			$complexitydone = $complexitydone + $listcomplexity;
 
-			 			
 			 			if ($lists->name == "Done") {
 			 				foreach ($lists->cards as $cardsoflists) {
 				 				$donecomplexity=$donecomplexity+1;
 				 			}
 
-				 			//insert board done complexity into graphdata array
-	 						$graphdata['pointdone'][$index]=$donecomplexity;				 			
+				 			//insert board done NUMBER OF CARDS into graphdata array (AND NOT POINT DONE)
+	 						$graphdata['pointdone'][$index]=$donecomplexity;
+
+	 						//insert board done POINTS into graphdata array
+	 						$graphdata['realpointdone'][$index]=$complexitydone;				 			
 			 			}
 					}	
 		 		}
@@ -134,24 +129,44 @@ if (!file_exists($filename)) {
 		 	if ($complexity4scrum == 0) {
 		 		$graphdata['totpointrem'][$index]='null';
 		 		$graphdata['pointdone'][$index]='null';
+		 		$graphdata['realpointdone'][$index]='null';
 		 	}else{
 		 		$graphdata['totpointrem'][$index]=$complexity4scrum;
 		 	}
 
 		 	//insert board complexity into graphdata array
 	 		$graphdata['totpointboard'][$index]=$boardcomplexity;
+		}
+	}
 
-	 			
+	print_r($graphdata);
+	echo "<br>";
+
+	//---- UPDATE ARRAY DATA IN CASE OF VELOCITY UPDATE ----
+	//Parse the entire data array
+	for ($parse = $index; $parse > 0 ; $parse--) { 
+		//if (totpointboard day X minus totpointboard day X-1) > 0 AND NOT FOR the 1st day of the sprint
+		if (($graphdata['totpointboard'][$parse]-$graphdata['totpointboard'][$parse+1]) > 0 AND $parse != $index) {
+			// >> A = totpointboard day X minus totpointboard day X-1
+			$difftotpointboard = ($graphdata['totpointboard'][$parse]-$graphdata['totpointboard'][$parse+1]);
+			// >> B = pointdone day X minus pointdone day X-1
+			$difftotpointdone = ($graphdata['realpointdone'][$parse]-$graphdata['realpointdone'][$parse+1]);
+			// >> X = A - B
+			$unrealizedaddedpoint = $difftotpointboard - $difftotpointdone;
+
+			echo $difftotpointboard."<br>";
+			echo $difftotpointdone."<br>";
+			echo $unrealizedaddedpoint."<br>";
+
+			// >> pointrem + X for all previous days (X-1 to 1)
+			for ($z=$parse+1; $z <= $index ; $z++) { 
+				$graphdata['totpointrem'][$z] = $graphdata['totpointrem'][$z]+$unrealizedaddedpoint;
+			}
 		}
 	}
 
 	$livetotsprintcomp=max($graphdata['totpointboard']);
 	$holidays = $index-$workingdaycounter;
-
-	// echo $livetotsprintcomp."<br>";
-	// echo $workingdaycounter."<br>";
-	// echo $index."<br>";
-	// print_r($graphdata);
 
 	?>
 	<!-- amCharts javascript code -->
