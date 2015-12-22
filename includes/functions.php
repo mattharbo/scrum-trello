@@ -41,7 +41,7 @@ return <<<HTML
   		<li><a href="{$path}/nextsprintcandidates/" class="topbarlink" target="_blank">NEXT SPRINT CANDIDATES</a></li>
   		<li><a href="{$path}/scrumreport/" class="topbarlink" target="_blank">BURNDOWN CHART</a></li>
 	</ul>
-	<div class="appversion">v3.1</div>
+	<div class="appversion">v3.2</div>
 </div>
 HTML;
 }
