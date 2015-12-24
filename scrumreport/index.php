@@ -50,7 +50,7 @@ if (!file_exists($filename)) {
 
 	foreach ($filesindir as $key => $foldername) {
 		
-		if (strpos($foldername,'2015') !== false) {
+		if (strpos($foldername,'2015') !== false OR strpos($foldername,'2016') !== false) {
 			$index = $index +1;
 
 			//IN CASE OF SATURDAY OR SUNDAY => NOT PART OF PRODUCTION PLANNING (used in graph edition)
