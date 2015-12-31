@@ -63,7 +63,7 @@ if (!file_exists($filename)) {
 					file_existance($foldername);
 					?><form method='POST' action='./filecreation.php'>
 						<input type='hidden' name='variable' value=<?echo$foldername;?>>
-						<input type='submit' value='Repair'>
+						<input type='submit' value='Repair Sunday'>
 					</form><?
 				}
 			}else{
@@ -71,7 +71,7 @@ if (!file_exists($filename)) {
 				file_existance($foldername);
 				?><form method='POST' action='./filecreation.php'>
 					<input type='hidden' name='variable' value=<?echo$foldername;?>>
-					<input type='submit' value='Repair'>
+					<input type='submit' value='Repair Saturday'>
 				</form><?
 			}
 
