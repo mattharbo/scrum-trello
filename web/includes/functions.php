@@ -40,8 +40,9 @@ return <<<HTML
   		<li><a href="{$path}./" class="topbarlink">HOME</a></li>
   		<li><a href="{$path}/nextsprintcandidates/" class="topbarlink" target="_blank">NEXT SPRINT CANDIDATES</a></li>
   		<li><a href="{$path}/scrumreport/" class="topbarlink" target="_blank">BURNDOWN CHART</a></li>
+  		<li><a href="{$path}/sprint_report/" class="topbarlink" target="_blank">DOWNLOAD</a></li>
 	</ul>
-	<div class="appversion">v3.2</div>
+	<div class="appversion">v4.0</div>
 </div>
 HTML;
 }
