@@ -1,6 +1,7 @@
 <?
 $date=date("Y-m-d_H-i-s");
-$tobeprinted="Cards selected for sprint demo :\n";
+
+$tobeprinted= "Cards selected for sprint demo :\n";
 
 foreach ($_POST as $cardchecked=>$value) {
 	$tobeprinted=$tobeprinted."\n".$value;

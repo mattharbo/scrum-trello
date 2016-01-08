@@ -21,7 +21,7 @@ echo "<br><br><br><br><br>";
 // ################ 1st form ################
 
 if (!isset($listsalected)) {
-		echo "<form action='./' method='POST'><select name='listid'>";
+		echo "<div id='firstform'><form action='./' method='POST'><select name='listid'>";
 
 	foreach ($listid as $listchoices => $value1) {
 		echo "<option value='".$value1."'>".$listchoices."</option>";
@@ -29,14 +29,16 @@ if (!isset($listsalected)) {
 
 	echo "</select>";
 	echo "<input type='hidden' name='listselected' value='true'>";
-	echo "<input type='submit' value='Validate'></form>";
+	echo "<center><input type='submit' value='Validate' class='validatebutton'></center></form></div>";
 }
 
 if (isset($_POST['listid'])) {
 	// ################ 2nd form ################
 
-	echo "<br><form action='./generatefile.php' method='post'>";
+	echo "<div id='secondform'><b>The list you have selected is :</b> ".array_search($_POST['listid'], $listid)."<br>";
+	echo "<br><form action='./generatefile.php' method='post' id ='frm2'>";
 
+	echo "<input type='hidden' name='namelistselected' value='".array_search($_POST['listid'], $listid)."'>";
 
 	if (!empty(fetchdataonapi($boardcards))) {
 
@@ -49,11 +51,12 @@ if (isset($_POST['listid'])) {
 				echo "<input type='checkbox' name='card".$id."'' value='".$card->name."'> ".$card->name."<br>";
 			}
 		}
+		echo "<input type='checkbox' name='checkall' onclick='checkedAll(frm2);'> <b>SELECT ALL CARDS</b>";
 	}else{
 		echo "Something wrong with the network.";
 	}
 
-echo "<input type='submit' value='generate'></form><a href='./'>Back to list choice</a>";
+echo "<center><input type='submit' value='Generate' class='validatebutton'></form><br><br><a href='./'>Back to list choice</a></center></div>";
 }
 
 ?>

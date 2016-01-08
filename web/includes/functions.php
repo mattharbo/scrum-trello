@@ -27,6 +27,18 @@ return <<<HTML
         $(window).load(function(){
             $("#loader").show();
         });
+
+checked=false;
+function checkedAll (frm2) {var aa= document.getElementById('frm2'); if (checked == false)
+{
+checked = true
+}
+else
+{
+checked = false
+}for (var i =0; i < aa.elements.length; i++){ aa.elements[i].checked = checked;}
+}
+
 	</script>
 </head>
 <body>
