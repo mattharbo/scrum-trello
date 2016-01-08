@@ -18,7 +18,7 @@ echo htmlheader("Follo • Live stream Members Activity", "../includes/main.css"
 $allboardmembers = array
   (
   //array(id, avatarHash, fullName, username)
-  array("561242cbf754cab8cae6d06a","a1441d5241c8130aa7e9faf3c0b48ae3","Arnaud Lebreton","arnaudlebreton4","Arnaud"),
+  // array("561242cbf754cab8cae6d06a","a1441d5241c8130aa7e9faf3c0b48ae3","Arnaud Lebreton","arnaudlebreton4","Arnaud"),
   // array("4fa23fb211b91e3e65b5e843","ef30f40b727f9c30d40f164d1fc235f3","Joan-Manuel Ortega-Ardila","joanmanuelortegaardila","Joan"),
   // array("53b5546da205ddb665966514","dd5922dba92cfecd7f7a854a230ca382","Mickaël Anoufa","mickaelanoufa","Mickael"),
   array("55fa6e5e938f433370d23bee","0c87cc12e39c5380e132254b256996ee","Gaelle","gaelle94","Gaelle"),
