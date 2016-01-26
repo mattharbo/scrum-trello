@@ -57,7 +57,7 @@ if (isset($_POST['listid'])) {
 
 			if ($card->idList == $_POST['listid']){
 				$id = $id+1;
-				echo "<input type='checkbox' name='card".$id."'' value='(@".$memberid[$card->members[1]->id].") • ".$card->name."'> ".$card->name."<br>";
+				echo "<input type='checkbox' name='card".$id."'' value='(@".$memberid[$card->members[1]->id].") • ".$card->name."'> <a href='".$card->url."' target='_blank'>".$card->name."</a><br>";
 			}
 		}
 		echo "<br><input type='checkbox' name='checkall' onclick='checkedAll(frm2);'> <b>SELECT ALL CARDS</b>";
